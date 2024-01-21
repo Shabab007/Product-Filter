@@ -1,44 +1,24 @@
 import { useMemo } from 'react';
 import { FilterFormProps } from './Types';
 import FilterComponentWrapper from '../FilterComponentWrapper';
-import Accordion from '../Accordion/Accordion';
 import { filterOptions } from '../../constants/filterContstats';
 import { useFilterHooks } from '../../hooks/useFilterHooks';
 import { useProductHook } from '../../hooks/useProductHook';
+import Category from '../Category';
+import Accordion from '../Accordion';
 
 const FilterForm = (props: FilterFormProps) => {
   const { clasName } = props;
   const { categories } = useProductHook();
-  const {
-    selectCategory,
-    selectedCategory,
-    handleFilterChange,
-    handleDynamcValue,
-    handleResetFilter,
-  } = useFilterHooks();
+  const { handleFilterChange, handleDynamcValue, handleResetFilter } =
+    useFilterHooks();
 
   const categoryCheckboxes = useMemo(
     () =>
       categories?.map((option, optionIdx) => (
-        <div key={option} className="flex items-center">
-          <input
-            id={`filter-mobile-${option}-${optionIdx}`}
-            name={option}
-            defaultValue={option}
-            onChange={selectCategory}
-            type="checkbox"
-            checked={selectedCategory.includes(option)}
-            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-          />
-          <label
-            htmlFor={`filter-mobile-${option}-${optionIdx}`}
-            className="ml-3 min-w-0 flex-1 text-gray-500"
-          >
-            {option}
-          </label>
-        </div>
+        <Category key={optionIdx} option={option} />
       )),
-    [categories, selectedCategory, selectCategory]
+    [categories]
   );
 
   const accordionSections = useMemo(

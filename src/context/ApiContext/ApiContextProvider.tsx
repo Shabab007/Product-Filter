@@ -18,6 +18,7 @@ export const ProductContextProvider: React.FC<{
     data: products,
     isLoading: isLoadingProducts,
     isError: isErrorProducts,
+    refetch: refetchProducts,
   } = useQuery<ProductData[], Error>({
     queryKey: ['products'],
     queryFn: () => fetchData(mainURl + 'products'),
@@ -27,6 +28,7 @@ export const ProductContextProvider: React.FC<{
     data: categories,
     isLoading: isLoadingCategories,
     isError: isErrorCategories,
+    refetch: refetchCategories,
   } = useQuery<string[], Error>({
     queryKey: ['categories'],
     queryFn: () => fetchData(mainURl + 'products/categories'),
@@ -39,6 +41,8 @@ export const ProductContextProvider: React.FC<{
     isErrorProducts,
     isLoadingCategories,
     isErrorCategories,
+    refetchCategories,
+    refetchProducts,
   };
 
   //   useEffect(() => {

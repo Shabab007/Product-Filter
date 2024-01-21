@@ -8,11 +8,19 @@ export const useProductHook = () => {
     isErrorProducts,
     isLoadingCategories,
     isErrorCategories,
+    refetchCategories,
+    refetchProducts,
   } = useProductContext();
+
+  const handleReload = () => {
+    refetchCategories();
+    refetchProducts();
+  };
   return {
     loading: isLoadingProducts || isLoadingCategories,
     error: isErrorCategories || isErrorProducts,
     products,
     categories,
+    handleReload,
   };
 };

@@ -1,4 +1,4 @@
-import StarRating from '../StarRating';
+import StarRating from '../components/StarRating';
 import Range from '../components/Range';
 
 export const sortOptions = [

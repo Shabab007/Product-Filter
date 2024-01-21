@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Suspense, lazy } from 'react';
 import { ProductContextProvider } from './context/ApiContext/ApiContextProvider';
+import Loader from './components/Loader';
 const Home = lazy(() => import('./Pages/Home'));
 
 const App: React.FC = () => {
@@ -8,7 +9,7 @@ const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ProductContextProvider>
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<Loader />}>
           <Home />
         </Suspense>
       </ProductContextProvider>

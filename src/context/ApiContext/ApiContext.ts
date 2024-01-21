@@ -9,6 +9,8 @@ export interface ProductContextProps {
   isErrorProducts: boolean;
   isLoadingCategories: boolean;
   isErrorCategories: boolean;
+  refetchCategories: () => void;
+  refetchProducts: () => void;
 }
 
 export const ProductContext = createContext<ProductContextProps | undefined>(

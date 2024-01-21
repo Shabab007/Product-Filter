@@ -1,8 +1,7 @@
-import React from 'react';
 import Product from '../Product/Product';
 import { ProductData } from './types';
 
-function ProductListContainer(props: { products: ProductData[] }) {
+function ProductList(props: { products: ProductData[] }) {
   const { products } = props;
   return (
     <div className="bg-white">
@@ -17,4 +16,4 @@ function ProductListContainer(props: { products: ProductData[] }) {
   );
 }
 
-export const ProductList = React.memo(ProductListContainer);
+export default ProductList;

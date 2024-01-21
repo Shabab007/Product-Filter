@@ -9,10 +9,10 @@ import Search from '../Search/Search';
 import FilterForm from '../FilterForm';
 import { sortOptions } from '../../constants/filterContstats';
 import { FilterProps } from './types';
-import SortItems from '../SortItems/SortItems';
+import SortItems from '../SortItems';
 
 export default function Filters(props: FilterProps) {
-  const { children, categories } = props;
+  const { children } = props;
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const toggleMobileFilters = useCallback(() => {
     setMobileFiltersOpen(prev => !prev);
@@ -66,10 +66,7 @@ export default function Filters(props: FilterProps) {
 
                 {/* Filters */}
 
-                <FilterForm
-                  clasName={'p-4 mt-4 border-t border-gray-200'}
-                  categories={categories}
-                />
+                <FilterForm clasName={'p-4 mt-4 border-t border-gray-200'} />
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -126,7 +123,7 @@ export default function Filters(props: FilterProps) {
 
           <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
             {/* Filters */}
-            <FilterForm clasName={filterFormClass} categories={categories} />
+            <FilterForm clasName={filterFormClass} />
 
             {/* Product grid */}
             <div className="lg:col-span-3">{children}</div>

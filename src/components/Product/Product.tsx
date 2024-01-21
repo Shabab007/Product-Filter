@@ -1,17 +1,12 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ProductData } from '../ProductList/types';
 import { customRound } from '../../helpers/FilterHelper';
-import Star from '../../StarRating/Star';
+import Star from '../StarRating/Star';
 import MyModal from '../../Modal';
 
 const Product = ({ product }: { product: ProductData }) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
+  // const [imageLoaded, setImageLoaded] = useState(false);
   const [openModal, setModal] = useState(false);
-
-  const handleImageLoad = () => {
-    setImageLoaded(true);
-  };
-
   const handleOpenModal = () => {
     setModal(true);
   };
@@ -32,7 +27,6 @@ const Product = ({ product }: { product: ProductData }) => {
           src={product.image}
           alt={product.title}
           className="h-full w-full object-cover object-center group-hover:opacity-75"
-          onLoad={handleImageLoad}
         />
       </div>
       <h3 className="mt-4 text-sm text-gray-700">{product.title}</h3>
@@ -59,13 +53,8 @@ const Product = ({ product }: { product: ProductData }) => {
             <img
               src={product.image}
               alt="Loaded Image"
-              className={`transition-opacity ${
-                imageLoaded ? 'opacity-100' : 'opacity-0'
-              } w-full h-full object-contain`}
+              className={`w-full h-full object-contain`}
             />
-            {!imageLoaded && (
-              <div className="transition h-[450px] w-[350px] bg-gray-300"></div>
-            )}
           </div>
         </MyModal>
       )}
