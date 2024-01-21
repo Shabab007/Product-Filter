@@ -1,6 +1,6 @@
 # Ecommerce Product Filter
 
-It is an minified core feature version of product search, filter and sort with best practise. Here i have used react , React query for asynchronous data fetching, Tailwind css, Typescript.
+It is an minified core feature version of product search, filter and sort with best practise. Here i have used react , React query for asynchronous data fetching, Tailwind css, Typescript. Fully Responsive
 
 # Features
 
@@ -45,5 +45,9 @@ yarn dev
 # Outro
 
 Bulid by Shabab Hossain Rhythm.
+
+Senior Software Engineer.
+
+Visit my [website.](https://shr23.vercel.app/)
 
 Heres my [linkedin.](https://www.linkedin.com/in/shr23/)
