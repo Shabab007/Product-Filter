@@ -74,7 +74,7 @@ export default function Filters(props: FilterProps) {
       </Transition.Root>
 
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex gap-4 items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+        <div className="flex gap-4 items-baseline justify-between border-b border-gray-200 pt-10">
           <Search />
           <div className="flex items-center">
             <Menu as="div" className="relative inline-block text-left">

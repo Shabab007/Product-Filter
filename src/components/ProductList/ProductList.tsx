@@ -1,4 +1,4 @@
-import Product from '../Product/Product';
+import Product from '../Product';
 import { ProductData } from './types';
 
 function ProductList(props: { products: ProductData[] }) {

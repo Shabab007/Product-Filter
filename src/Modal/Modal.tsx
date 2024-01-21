@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { ModalProps } from './types';
 
 export default function MyModal(props: ModalProps) {
-  const { isOpen, closeModal, openModal, children } = props;
+  const { isOpen, closeModal, children } = props;
 
   return (
     <>

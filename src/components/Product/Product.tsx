@@ -1,11 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { ProductData } from '../ProductList/types';
 import { customRound } from '../../helpers/FilterHelper';
 import Star from '../StarRating/Star';
 import MyModal from '../../Modal';
 
 const Product = ({ product }: { product: ProductData }) => {
-  // const [imageLoaded, setImageLoaded] = useState(false);
   const [openModal, setModal] = useState(false);
   const handleOpenModal = () => {
     setModal(true);
