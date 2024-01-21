@@ -15,11 +15,7 @@ export interface FilterTypes {
   sortBy: SortTypes;
   [key: string]: string | string[];
 }
-export interface FilterBarProps {
-  filters: FilterTypes;
-  setFilters: React.Dispatch<React.SetStateAction<FilterTypes>>;
-  categories: string[];
-}
+export interface FilterBarProps {}
 
 export interface ProductLayoutProps {
   products: ProductData[];

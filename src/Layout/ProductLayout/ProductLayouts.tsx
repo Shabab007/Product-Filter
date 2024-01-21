@@ -1,29 +1,22 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import Filters from '../../components/Filters';
 import ProductList from '../../components/ProductList';
-import { FilterTypes, ProductLayoutProps, SortTypes } from './types';
 import { filterAndSortProducts } from '../../helpers/FilterHelper';
+import { useFilterContext } from '../../context/FilterContext/FilterContext';
+import { useProductHook } from '../../hooks/useProductHook';
+import { ProductData } from '../../components/ProductList/types';
 
-const ProductLayout = (props: ProductLayoutProps) => {
-  const { products, categories } = props;
-  const [filters, setFilters] = useState<FilterTypes>({
-    productName: '',
-    category: [],
-    priceRange: '',
-    rating: '',
-    sortBy: SortTypes.NONE,
-  });
+const ProductLayout = () => {
+  const { products } = useProductHook();
+  const { filters } = useFilterContext();
+
   const filteredAndSortedProducts = useMemo(
-    () => filterAndSortProducts(products, filters),
+    () => filterAndSortProducts(products as ProductData[], filters),
     [products, filters]
   );
   return (
     <div className="mx-auto max-w-2xl lg:max-w-7xl">
-      <Filters
-        filters={filters}
-        setFilters={setFilters}
-        categories={categories}
-      >
+      <Filters>
         <ProductList products={filteredAndSortedProducts} />
       </Filters>
     </div>

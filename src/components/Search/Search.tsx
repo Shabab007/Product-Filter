@@ -1,7 +1,11 @@
-import { SearchProps } from './types';
+import { useFilterHooks } from '../../hooks/useFilterHooks';
 
-const Search = (props: SearchProps) => {
-  const { value, name, onChange } = props;
+const Search = () => {
+  const { productName, handleFilterChange } = useFilterHooks();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleFilterChange(e);
+  };
+
   return (
     <div className="relative mb-10 w-full flex  items-center justify-between rounded-md">
       <svg
@@ -21,11 +25,11 @@ const Search = (props: SearchProps) => {
       </svg>
       <input
         type="name"
-        name={name}
-        value={value}
+        name="productName"
+        value={productName}
         className="w-full bg-red text-[.7rem] md:text-xl h-12 cursor-text rounded-md border border-gray-100 bg-gray-100 py-4 pr-2 pl-12 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
         placeholder="Search"
-        onChange={onChange}
+        onChange={handleChange}
       />
     </div>
   );

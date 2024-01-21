@@ -9,39 +9,15 @@ import Search from '../Search/Search';
 import FilterForm from '../FilterForm';
 import { sortOptions } from '../../constants/filterContstats';
 import { FilterProps } from './types';
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
-}
+import SortItems from '../SortItems/SortItems';
 
 export default function Filters(props: FilterProps) {
-  const { children, filters, setFilters, categories } = props;
+  const { children, categories } = props;
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-
-  const setFilterValue = useCallback((name: string, value: string) => {
-    setFilters(state => ({
-      ...state,
-      [name]: value,
-    }));
-  }, []);
-
-  const handleFilterChange = useCallback((e: any) => {
-    switch (e.type) {
-      case 'click': {
-        setFilterValue(e.target.title, e.target.innerText);
-        break;
-      }
-      default:
-        setFilterValue(e.target.name, e.target.value);
-    }
-  }, []);
-
-  // useCallback for toggleMobileFilters
   const toggleMobileFilters = useCallback(() => {
     setMobileFiltersOpen(prev => !prev);
   }, []);
 
-  // useMemo for filterFormClass
   const filterFormClass = useMemo(() => 'p-4 hidden lg:block', []);
 
   return (
@@ -92,9 +68,7 @@ export default function Filters(props: FilterProps) {
 
                 <FilterForm
                   clasName={'p-4 mt-4 border-t border-gray-200'}
-                  filters={filters}
                   categories={categories}
-                  setFilters={setFilters}
                 />
               </Dialog.Panel>
             </Transition.Child>
@@ -104,11 +78,7 @@ export default function Filters(props: FilterProps) {
 
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex gap-4 items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
-          <Search
-            value={filters.productName}
-            onChange={handleFilterChange}
-            name="productName"
-          />
+          <Search />
           <div className="flex items-center">
             <Menu as="div" className="relative inline-block text-left">
               <div>
@@ -132,24 +102,7 @@ export default function Filters(props: FilterProps) {
                 <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <div className="py-1">
                     {sortOptions.map(option => (
-                      <Menu.Item key={option.name}>
-                        {({ active }) => (
-                          <div
-                            title="sortBy"
-                            id="sortBy"
-                            onClick={handleFilterChange}
-                            className={classNames(
-                              option.current
-                                ? 'font-medium text-gray-900'
-                                : 'text-gray-500',
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm'
-                            )}
-                          >
-                            {option.name}
-                          </div>
-                        )}
-                      </Menu.Item>
+                      <SortItems key={option.name} option={option} />
                     ))}
                   </div>
                 </Menu.Items>
@@ -173,12 +126,7 @@ export default function Filters(props: FilterProps) {
 
           <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
             {/* Filters */}
-            <FilterForm
-              clasName={filterFormClass}
-              filters={filters}
-              categories={categories}
-              setFilters={setFilters}
-            />
+            <FilterForm clasName={filterFormClass} categories={categories} />
 
             {/* Product grid */}
             <div className="lg:col-span-3">{children}</div>
